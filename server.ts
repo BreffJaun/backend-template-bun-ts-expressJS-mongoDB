@@ -3,12 +3,14 @@ import express from "express";
 import cors from "cors";
 import morgan from "morgan";
 import cookieParser from "cookie-parser";
+import type { Request, Response, NextFunction } from "express";
 
 // I M P O R T:  E N V  O P T I O N S
 import { PORT, corsOptions } from "./config/config.js";
 
 // I M P O R T:  C O M P O N E N T S
 import { connectToDatabase } from "./config/database.js";
+import { serverStart } from "./config/server.js";
 
 // I M P O R T:  M I D D L E W A R E  H A N D L E R
 import invalidRoute from "./routes/invalidRoute.js";
@@ -20,7 +22,7 @@ import usersRouter from "./routes/users.js";
 // ==============================================================
 
 // C R E A T E  S E R V E R
-const app = express();
+export const app = express();
 
 // M I D D L E W A R E
 
@@ -35,7 +37,7 @@ app.use(cors(corsOptions));
 // ROUTER MIDDLEWARE
 
 // Ignore-favicon-handler => delete it in case of existing frontend
-app.get("/favicon.ico", (req, res, next) => {
+app.get("/favicon.ico", (req: Request, res: Response, next: NextFunction) => {
   res.status(204).end();
 });
 
@@ -54,6 +56,8 @@ app.use(errorHandler);
 connectToDatabase();
 
 // S E R V E R - S T A R T
-app.listen(PORT, () => {
-  console.log("Server runs on Port: " + PORT, "🔄");
-});
+serverStart(PORT);
+
+// app.listen(PORT, () => {
+//   console.log("Server runs on Port: " + PORT, "🔄");
+// });
