@@ -26,15 +26,5 @@ async function cleanDB() {
   }
 }
 
-// npm run clean
-// to empty the db
-
-// Old Spelling
-// async function cleanDB() {
-//   try {
-//     await UserModel.deleteMany({})
-//     console.log("DB cleaned")
-//   } catch (err) {
-//     console.log(err);
-//   }
-// }
+/* npm run clean
+to empty the db */
