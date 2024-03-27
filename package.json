@@ -37,6 +37,6 @@
   },
   "scripts": {
     "build": "tsc --watch",
-    "start": "bun --watch ./server.ts"
+    "start": "bun --watch ./index.ts"
   }
 }

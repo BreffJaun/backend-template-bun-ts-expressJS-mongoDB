@@ -9,8 +9,8 @@ import type { Request, Response, NextFunction } from "express";
 import { PORT, corsOptions } from "./config/config.js";
 
 // I M P O R T:  C O M P O N E N T S
+import { app, serverStart } from "./config/server.js";
 import { connectToDatabase } from "./config/database.js";
-import { serverStart } from "./config/server.js";
 
 // I M P O R T:  M I D D L E W A R E  H A N D L E R
 import invalidRoute from "./routes/invalidRoute.js";
@@ -20,9 +20,6 @@ import errorHandler from "./middleware/errorhandler.js";
 import usersRouter from "./routes/users.js";
 
 // ==============================================================
-
-// C R E A T E  S E R V E R
-export const app = express();
 
 // M I D D L E W A R E
 
@@ -57,7 +54,3 @@ connectToDatabase();
 
 // S E R V E R - S T A R T
 serverStart(PORT);
-
-// app.listen(PORT, () => {
-//   console.log("Server runs on Port: " + PORT, "🔄");
-// });
